@@ -1,0 +1,9 @@
+target/
+.classpath
+.project
+.settings/
+.sts4-cache/
+application.properties
+application.properties.prod
+JWT*.pem
+*.log
