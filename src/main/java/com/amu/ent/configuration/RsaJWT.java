@@ -23,7 +23,7 @@ public class RsaJWT {
 
 	
 	private static final Logger logger = LoggerFactory.getLogger(RsaJWT.class);
-	
+
 	public static RSAPublicKey readPublicKey()  {
 		
 		if (publickey != null )
@@ -43,10 +43,10 @@ public class RsaJWT {
         String key = new String(bdata, StandardCharsets.UTF_8);
 	    //String key = new String(Files.readAllBytes(file.toPath()), Charset.defaultCharset());
 
+		// remove '-----(BEGIN|END) (RSA)? (PUBLIC|PRIVATE) KEY-----' lines
 	    String publicKeyPEM = key
-	      .replace("-----BEGIN PUBLIC KEY-----", "")
-	      .replaceAll(System.lineSeparator(), "")
-	      .replace("-----END PUBLIC KEY-----", "");
+	      .replaceAll("--.*--", "")
+	      .replaceAll(System.lineSeparator(), "");
 
 	   	try {
 	   		byte[] encoded = Base64.getDecoder().decode(publicKeyPEM);
@@ -79,11 +79,11 @@ public class RsaJWT {
 		}
         
         String key = new String(bdata, StandardCharsets.UTF_8);
-	    
+
+		// remove '-----(BEGIN|END) (RSA)? (PUBLIC|PRIVATE) KEY-----' lines
 	    String rsaPrivateKey = key
-	      .replace("-----BEGIN PRIVATE KEY-----", "")
-	      .replaceAll(System.lineSeparator(), "")
-	      .replace("-----END PRIVATE KEY-----", "");
+	      .replaceAll("--.*--", "")
+	      .replaceAll(System.lineSeparator(), "");
 
 	    try {
 	    	PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(Base64.getDecoder().decode(rsaPrivateKey));
