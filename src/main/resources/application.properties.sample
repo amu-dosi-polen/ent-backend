@@ -47,6 +47,7 @@ cas.server-name=http://localhost:8080
 spring.ldap.urls=ldap://ldap.univ.fr,ldap://ldap2.univ.fr:389
 ldap.base.people=ou=people,dc=univ,dc=fr
 ldap.base.groups=ou=groups,dc=univ,dc=fr
+ldap.group-objectclass=groupOfNames
 spring.ldap.username=cn=ent,ou=system,dc=univ,dc=fr
 spring.ldap.password=Secret
 

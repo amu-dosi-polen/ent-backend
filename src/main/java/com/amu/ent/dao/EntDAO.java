@@ -44,6 +44,9 @@ public class EntDAO implements IEntDAO {
 	@Value("${ldap.base.groups}")
 	private String ldapBaseGroups;
 
+    	@Value("${ldap.group-objectclass}")
+	private String ldapGroupObjectClass;
+
 	@Autowired
 	private LdapTemplate ldapTemplate;
 
@@ -153,7 +156,7 @@ public class EntDAO implements IEntDAO {
 
 		LikeFilter likeFilter = new LikeFilter("cn", "*" + groupResearch + "*");
 		AndFilter andFilter = new AndFilter();
-		andFilter.and(new EqualsFilter("objectclass", "AMUGroup"));
+		andFilter.and(new EqualsFilter("objectclass", ldapGroupObjectClass));
 		andFilter.and(likeFilter);
 		List<LdapGroup> groups = new ArrayList<LdapGroup>();
 
