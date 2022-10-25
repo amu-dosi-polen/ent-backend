@@ -143,7 +143,7 @@ public class EntController {
 				int i = 0;
 				while (i < groups.size()) {
 					if (adminGroup.contains(groups.get(i))) {
-						role="DOSI";
+						role="ADMIN";
 					}
 					i++;
 				}
